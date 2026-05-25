@@ -1,0 +1,41 @@
+{
+  "name": "zip-analyzer-tool",
+  "version": "1.0.0",
+  "description": "ZIP 파일 분석 및 편집 도구 - Cloudflare Workers 배포",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "deploy:prod": "wrangler deploy --env production",
+    "build": "esbuild src/index.ts --bundle --platform=neutral --target=es2020 --outfile=dist/index.js",
+    "type-check": "tsc --noEmit",
+    "test": "jest"
+  },
+  "dependencies": {
+    "google-generativeai": "^0.3.0",
+    "form-data": "^4.0.0",
+    "jszip": "^3.10.1",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "wrangler": "^3.26.0",
+    "@cloudflare/workers-types": "^4.20231121.0",
+    "typescript": "^5.3.3",
+    "esbuild": "^0.19.8",
+    "@types/node": "^20.10.5",
+    "jest": "^29.7.0",
+    "@types/jest": "^29.5.10",
+    "ts-jest": "^29.1.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "cloudflare-workers",
+    "zip-analysis",
+    "file-editing",
+    "gemini-api"
+  ],
+  "author": "choichoi3227-crypto",
+  "license": "MIT"
+}
