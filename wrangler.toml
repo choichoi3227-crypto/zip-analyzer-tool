@@ -1,0 +1,41 @@
+name = "zip-analyzer-tool"
+main = "src/index.ts"
+compatibility_date = "2024-12-16"
+compatibility_flags = ["nodejs_compat"]
+
+# Cloudflare KV 바인딩 (임시 데이터 저장)
+[[kv_namespaces]]
+binding = "KV_STORE"
+id = "your_kv_namespace_id"
+preview_id = "your_kv_preview_id"
+
+[env.production]
+routes = [
+  { pattern = "api.yourdomain.com/*", zone_id = "your_zone_id" }
+]
+compatibility_date = "2024-12-16"
+
+[env.development]
+routes = [
+  { pattern = "localhost:8787/*", zone_id = "" }
+]
+compatibility_date = "2024-12-16"
+
+[env.production.routes]
+cors = true
+
+[build]
+command = "npm install && npm run build"
+cwd = "./backend"
+
+[build.upload]
+format = "service-worker"
+
+[env.production.vars]
+GEMINI_API_ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/models"
+MAX_FILE_SIZE = "52428800"
+KV_EXPIRATION = "3600"
+
+[[migrations]]
+tag = "v1"
+new = true
